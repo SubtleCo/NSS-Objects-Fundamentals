@@ -58,11 +58,20 @@ const tenAlbum = {
 // Dot vs. Bracket Notation - accessing properties
 // TODO: USING DOT NOTATION, access the object properties (artist, title, released) and log the following message to the console using string interpolation: "Pearl Jam's Album Ten was released on 8/27/1991"
 
+console.log(`${tenAlbum.artist}'s Album ${tenAlbum.title} was released on ${tenAlbum.released}`)
+
 // TODO: Output the same messge to the console using BRACKET NOTATION
+
+console.log(`${tenAlbum["artist"]}'s Album ${tenAlbum["title"]} was released on ${tenAlbum["released"]}`)
 
 // Iterating Object keys/values
 // TODO: Iterate the tenAlbum object and log the key/value pairs to the console using a for/in loop
 // example: "title": "Ten"
+
+for (const item in tenAlbum) {
+    console.log(`${item}: ${tenAlbum[item]}`)
+    // item === "title", "artist", "released", "tracks"         
+}
 
 // Accessing iterable properties on objects
 // TODO: Iterate the tracks array and output the title of each song and its song length using a for loop of your choosing. The output should look something like this:
@@ -72,43 +81,67 @@ const tenAlbum = {
     etc.
 */
 
+tenAlbum.tracks.forEach( track => {
+        console.log(`Title: ${track.title} - Length: ${track.length}`)
+    }
+)
 // ! ADD AND COMMIT
 
 // OBJECT.keys() / .values() / .entries()
 // TODO: log the keys of the tenAlbum object using Object.keys()
-
+console.log(Object.keys(tenAlbum))
 // TODO: log the values of the tenAlbum object Object.values()
-
+console.log(Object.values(tenAlbum))
 // TODO: log the entries of the tenAlbum object Object.entries()
-
+console.log(Object.entries(tenAlbum))
 // TODO: iterate the tenAlbum object and log the key/value pairs to the console using each of the above Object methods:
 // .keys()
+Object.keys(tenAlbum).forEach(key => console.log(key))
 // .values()
+Object.values(tenAlbum).forEach(value => console.log(value))
 // .entries()
+Object.entries(tenAlbum).forEach(entry => console.log(entry))
 
 // ! ADD AND COMMIT
 
 // USING THE DATA FROM .setlists
 import { setlistsFromAPI } from "./setlists.js";
 // TODO: Log 'setlistsFromAPI' to the console
-
+console.log(setlistsFromAPI)
 // TODO: USING the 'setlistsFromAPI' data, find the event dated 18-08-2018 and store that event object in a variable named 'event'
-
+const event = setlistsFromAPI.setlist.find(set => set.eventDate === "18-08-2018")
 // TODO: log the 'event' object to the console
-
+console.log(event)
 // TODO: USING DOT OR BRACKET NOTATION AND STRING INTERPOLATION, create a string which includes the name of the band, the venue, and the date of the event and store it in a new variable clled "bandVenueDate"
 // this string should look something like "Pearl Jam - Wrigley Field - 18-08-2018"
-
+const bandVenueDate = `${event.artist.name} - ${event.venue.name} - ${event.eventDate}`
 // TODO: log the 'bandVenueDate' string to the console
-
+console.log(bandVenueDate);
 // TODO: Find the first set of songs of the 'event' object and store it in a variable named 'firstSet'
-
+const firstSet = event.sets.set[0].song
+console.log(firstSet);
 // TODO: USING ANY OF THE WAYS TO LOOP AND ACCESS OBJECT PROPERTIES - iterate the 'firstSet' array and log the name of each song to the console
+firstSet.forEach(song => console.log(song.name))
 
 // ! ADD AND COMMIT
 
 // BONUS IF YOU HAVE TIME...
 // Using only properties of the event object we've previously defined
 // TODO: Insert the bandVenueDate string into the innerHTML of the element with the id of "header" in index.html
+const targetElement = document.querySelector('#header')
+
+targetElement.innerHTML = bandVenueDate
+
 
 // TODO: Iterate the first set of songs for that event, create a list element for each song with the song's title and insert that new list element into the innerHTML of the element with the id of "setlist" in index.html
+const setListElement = document.querySelector('#setlist')
+
+const setListSongsHTML = firstSet.map(song => {
+    return `<li>${song.name}</li>`
+}).join('')
+
+
+setListElement.innerHTML = `
+<ol>
+${setListSongsHTML}
+</ol>`
