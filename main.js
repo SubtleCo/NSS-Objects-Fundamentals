@@ -58,7 +58,7 @@ const tenAlbum = {
 // Dot vs. Bracket Notation - accessing properties
 // TODO: USING DOT NOTATION, access the object properties (artist, title, released) and log the following message to the console using string interpolation: "Pearl Jam's Album Ten was released on 8/27/1991"
 
-// console.log(`${tenAlbum.artist}'s Album ${tenAlbum.title} was released on ${tenAlbum.released}`)
+console.log(`${tenAlbum.artist}'s Album ${tenAlbum.title} was released on ${tenAlbum.released}`)
 
 // TODO: Output the same messge to the console using BRACKET NOTATION
 
@@ -89,15 +89,18 @@ tenAlbum.tracks.forEach( track => {
 
 // OBJECT.keys() / .values() / .entries()
 // TODO: log the keys of the tenAlbum object using Object.keys()
-
+console.log(Object.keys(tenAlbum))
 // TODO: log the values of the tenAlbum object Object.values()
-
+console.log(Object.values(tenAlbum))
 // TODO: log the entries of the tenAlbum object Object.entries()
-
+console.log(Object.entries(tenAlbum))
 // TODO: iterate the tenAlbum object and log the key/value pairs to the console using each of the above Object methods:
 // .keys()
+Object.keys(tenAlbum).forEach(key => console.log(key))
 // .values()
+Object.values(tenAlbum).forEach(value => console.log(value))
 // .entries()
+Object.entries(tenAlbum).forEach(entry => console.log(entry))
 
 // ! ADD AND COMMIT
 
