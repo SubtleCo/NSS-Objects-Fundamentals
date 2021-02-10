@@ -128,5 +128,20 @@ firstSet.forEach(song => console.log(song.name))
 // BONUS IF YOU HAVE TIME...
 // Using only properties of the event object we've previously defined
 // TODO: Insert the bandVenueDate string into the innerHTML of the element with the id of "header" in index.html
+const targetElement = document.querySelector('#header')
+
+targetElement.innerHTML = bandVenueDate
+
 
 // TODO: Iterate the first set of songs for that event, create a list element for each song with the song's title and insert that new list element into the innerHTML of the element with the id of "setlist" in index.html
+const setListElement = document.querySelector('#setlist')
+
+const setListSongsHTML = firstSet.map(song => {
+    return `<li>${song.name}</li>`
+}).join('')
+
+
+setListElement.innerHTML = `
+<ol>
+${setListSongsHTML}
+</ol>`
